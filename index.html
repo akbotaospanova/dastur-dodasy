@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дәстүр додасы: Көш жолы — 5-сынып</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#06143d; --deep:#0b2470; --blue:#1546b8; --sky:#3d8bff; --ice:#bfe0ff;
+  --gold:#f5c451; --gold2:#ffdf8a; --white:#fff; --glass:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.14); --green:#38d996; --yellow:#ffd23f; --red:#ff5d6c;
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:#06143d}
+body{
+  font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:var(--white); line-height:1.55; min-height:100vh;
+  background:
+    radial-gradient(1200px 700px at 85% -10%, rgba(61,139,255,.45), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(21,70,184,.55), transparent 60%),
+    linear-gradient(180deg,#0a1f63 0%,#0b2470 30%,#071a52 60%,#06143d 100%);
+  overflow-x:hidden;
+}
+body::before{ /* ornament layer */
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.07; z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M60 78 C60 58 44 50 36 58 C28 66 38 78 46 70'/%3E%3Cpath d='M60 78 C60 58 76 50 84 58 C92 66 82 78 74 70'/%3E%3Cpath d='M60 42 C60 62 44 70 36 62'/%3E%3Cpath d='M60 42 C60 62 76 70 84 62'/%3E%3Cpath d='M60 42 L60 30 M54 24 L60 30 L66 24'/%3E%3Ccircle cx='0' cy='0' r='6'/%3E%3Ccircle cx='120' cy='0' r='6'/%3E%3Ccircle cx='0' cy='120' r='6'/%3E%3Ccircle cx='120' cy='120' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:120px 120px;
+}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(6,20,61,.72);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:18px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px;white-space:nowrap}
+.brand svg{width:34px;height:34px}
+.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.links::-webkit-scrollbar{display:none}
+.links a{color:var(--ice);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px;white-space:nowrap;transition:.2s}
+.links a:hover{background:var(--glass);color:#fff}
+
+/* HERO */
+.hero{padding:70px 0 40px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(245,196,81,.4);padding:7px 14px;border-radius:999px;background:rgba(245,196,81,.08)}
+h1{font-size:clamp(44px,7vw,84px);line-height:.98;font-weight:900;margin:18px 0 10px;letter-spacing:-1.5px}
+h1 span{display:block;background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:.55em;letter-spacing:-.5px;margin-top:8px}
+.lead{font-size:18px;color:var(--ice);max-width:600px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 28px}
+.chip{font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;background:var(--glass);border:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-weight:800;font-size:16px;border:0;cursor:pointer;
+  padding:15px 26px;border-radius:16px;text-decoration:none;transition:transform .15s, box-shadow .2s}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#f0a92a);color:#1a1300;box-shadow:0 10px 30px rgba(245,196,81,.35)}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-ghost{background:var(--glass);color:#fff;border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.14)}
+.hero-art{position:relative;aspect-ratio:1;max-width:420px;justify-self:center;width:100%}
+.hero-art svg{width:100%;height:100%;filter:drop-shadow(0 20px 60px rgba(61,139,255,.45))}
+.spin{animation:spin 60s linear infinite;transform-origin:50% 50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:10px 0 70px}
+.meta div{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.meta b{display:block;font-size:26px;font-weight:900;color:var(--gold)}
+.meta small{color:var(--ice);font-weight:600}
+
+/* SECTIONS */
+section{padding:60px 0;scroll-margin-top:70px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head .num{font-size:14px;font-weight:800;color:var(--gold);letter-spacing:2px}
+h2{font-size:clamp(30px,4vw,44px);font-weight:900;letter-spacing:-.8px;line-height:1.1}
+.sec-head p{color:var(--ice);max-width:480px}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+
+/* GOALS */
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.goal .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:8px;margin-bottom:12px}
+.goal h3{font-size:19px;margin-bottom:8px}
+.goal p{color:var(--ice);font-size:15px}
+.obj{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.obj .card b{color:var(--gold)}
+.obj .card p{color:var(--ice);font-size:15px;margin-top:6px}
+
+/* NAVIGATOR / TIMER */
+.nav-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.timer-card{position:relative;overflow:hidden}
+.stage-label{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
+.stage-title{font-size:28px;font-weight:900;margin:6px 0 4px;line-height:1.15}
+.stage-desc{color:var(--ice);min-height:48px}
+.clock{font-size:clamp(70px,11vw,128px);font-weight:900;letter-spacing:-3px;line-height:1;margin:18px 0 10px;font-variant-numeric:tabular-nums}
+.clock.warn{color:var(--yellow)} .clock.end{color:var(--red);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--gold));transition:width .5s linear}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.controls .btn{padding:12px 18px;font-size:15px}
+.total{margin-top:16px;color:var(--ice);font-weight:600;font-size:14px}
+.stages{max-height:520px;overflow:auto;padding-right:6px}
+.stages::-webkit-scrollbar{width:6px}.stages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:9px}
+.st{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:14px;cursor:pointer;transition:.2s;border:1px solid transparent}
+.st:hover{background:var(--glass)}
+.st .t{font-size:12px;font-weight:800;color:var(--ice);min-width:62px;font-variant-numeric:tabular-nums}
+.st .n{font-weight:700;font-size:15px}
+.st .p{margin-left:auto;font-size:12px;font-weight:700;padding:3px 8px;border-radius:7px;background:rgba(255,255,255,.08);white-space:nowrap}
+.st.done{opacity:.45}.st.done .n{text-decoration:line-through}
+.st.active{background:rgba(245,196,81,.12);border-color:rgba(245,196,81,.5)}
+.st.active .t{color:var(--gold)}
+
+/* KOSH PATH */
+.path{position:relative;margin-top:22px;padding:30px 10px 4px}
+.path svg{width:100%;height:110px;overflow:visible}
+.milestones{display:grid;grid-template-columns:repeat(6,1fr);text-align:center;margin-top:6px}
+.milestones span{font-size:12px;font-weight:700;color:var(--ice)}
+
+/* STATIONS */
+.stations{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.station{cursor:pointer;position:relative;overflow:hidden;transition:transform .25s, border-color .25s;text-align:left;font-family:inherit;color:inherit}
+.station:hover{transform:translateY(-5px);border-color:rgba(245,196,81,.6)}
+.station .big{position:absolute;right:-6px;top:-18px;font-size:110px;font-weight:900;color:rgba(255,255,255,.06);line-height:1}
+.station .ico{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--sky),var(--blue));margin-bottom:16px;box-shadow:0 10px 24px rgba(61,139,255,.35)}
+.station .ico svg{width:32px;height:32px}
+.station h3{font-size:21px;font-weight:800;margin-bottom:4px}
+.station .time{font-size:13px;font-weight:700;color:var(--gold)}
+.station p{color:var(--ice);font-size:14.5px;margin-top:10px}
+.station .more{margin-top:16px;font-size:13px;font-weight:800;color:#fff;display:inline-flex;gap:6px;align-items:center}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,10,32,.75);backdrop-filter:blur(6px)}
+.modal.open{display:flex}
+.modal-box{width:min(760px,100%);max-height:92vh;overflow:auto;background:linear-gradient(170deg,#12348f,#0a1f5c);border:1px solid var(--line);border-radius:26px;padding:30px;position:relative;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.95);opacity:0}}
+.close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:#fff;font-size:22px;cursor:pointer}
+.quote{border-left:4px solid var(--gold);background:rgba(245,196,81,.1);padding:12px 16px;border-radius:0 12px 12px 0;margin:14px 0;font-weight:600;font-style:italic}
+.modal-box h4{font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin:18px 0 6px}
+.modal-box p{color:#e3efff}
+.lvl-tabs{display:flex;gap:8px;margin-top:8px}
+.lvl-tabs button{flex:1;font-family:inherit;font-weight:800;padding:10px;border-radius:12px;border:2px solid transparent;cursor:pointer;color:#06143d}
+.lvl-tabs .g{background:var(--green)} .lvl-tabs .y{background:var(--yellow)} .lvl-tabs .r{background:var(--red);color:#fff}
+.lvl-tabs button.on{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.lvl-text{margin-top:12px;padding:16px;border-radius:14px;background:rgba(255,255,255,.08);font-weight:600;min-height:60px}
+
+/* SCOREBOARD */
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.team{position:relative;overflow:hidden}
+.team-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.team-head .logo{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:26px;font-weight:900}
+.tulpar .logo{background:linear-gradient(135deg,#3d8bff,#1546b8)}
+.qyran .logo{background:linear-gradient(135deg,#f5c451,#e08a14);color:#1a1300}
+.team-head h3{font-size:26px;font-weight:900}
+.team-total{margin-left:auto;text-align:right}
+.team-total b{font-size:54px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.team-total small{display:block;color:var(--ice);font-weight:700;font-size:12px}
+.row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.row .lbl{font-size:14px;font-weight:600;flex:1}
+.pts{display:flex;gap:4px}
+.pts button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;font-family:inherit;font-weight:800;cursor:pointer;font-size:13px}
+.pts button.on{background:var(--gold);color:#1a1300;border-color:var(--gold)}
+.tumar{width:22px;height:22px;flex:none;cursor:pointer;opacity:.25;transition:.2s}
+.tumar.on{opacity:1;filter:drop-shadow(0 0 6px var(--gold))}
+.leader{position:absolute;top:14px;right:-38px;transform:rotate(35deg);background:var(--gold);color:#1a1300;font-weight:900;font-size:11px;padding:4px 44px;display:none}
+.team.lead .leader{display:block}
+.shanyraq-box{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-top:18px}
+.shanyraq-box svg{width:190px;height:190px}
+.shanyraq-box p{color:var(--ice)}
+.shanyraq-box h3{font-size:24px;margin-bottom:6px}
+
+/* PULSE */
+.pulse-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pulse-in{display:flex;align-items:center;gap:12px;margin:16px 0}
+.pulse-in input{width:120px;font-family:inherit;font-size:34px;font-weight:900;text-align:center;padding:10px;border-radius:16px;border:2px solid var(--line);background:rgba(255,255,255,.08);color:#fff}
+.pulse-in input:focus{outline:none;border-color:var(--gold)}
+.pulse-out{font-size:60px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.pulse-out small{font-size:16px;color:var(--ice);font-weight:700}
+.zone{margin-top:14px;padding:16px;border-radius:16px;font-weight:700;background:rgba(255,255,255,.07);transition:.3s}
+.zone.g{background:rgba(56,217,150,.18);border:1px solid var(--green)}
+.zone.y{background:rgba(255,210,63,.16);border:1px solid var(--yellow)}
+.zone.r{background:rgba(255,93,108,.18);border:1px solid var(--red)}
+.heart{display:inline-block;animation:beat 1s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+.count10{font-size:84px;font-weight:900;text-align:center;line-height:1;margin:14px 0;font-variant-numeric:tabular-nums}
+.lights{display:grid;gap:10px;margin-top:14px}
+.light{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.05)}
+.light i{width:18px;height:18px;border-radius:50%;flex:none}
+.light b{min-width:96px}
+.light span{color:var(--ice);font-size:14px}
+
+/* WARMUP, ROLES, SAFETY */
+.warm{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.warm .card{padding:18px}
+.warm .t{font-size:12px;color:var(--gold);font-weight:800}
+.warm h4{font-size:17px;margin:4px 0}
+.warm p{font-size:14px;color:var(--ice)}
+.warm .dose{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;background:rgba(255,255,255,.1);padding:3px 8px;border-radius:7px}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.role{display:flex;gap:14px;align-items:flex-start}
+.role .em{font-size:30px;width:52px;height:52px;flex:none;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.08)}
+.role h4{font-size:17px}.role p{font-size:14px;color:var(--ice)}
+.safety{display:grid;grid-template-columns:1fr 1fr;gap:12px;counter-reset:s}
+.safety li{list-style:none;display:flex;gap:14px;padding:14px 16px;border-radius:16px;background:var(--glass);border:1px solid var(--line);font-size:14.5px;color:#e3efff}
+.safety li::before{counter-increment:s;content:counter(s);flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--gold);color:#1a1300;font-weight:900;font-size:14px}
+.stop{display:flex;align-items:center;gap:18px;margin-bottom:16px;background:linear-gradient(135deg,rgba(255,93,108,.25),rgba(255,93,108,.08));border-color:rgba(255,93,108,.5)}
+.stop b{font-size:34px;font-weight:900}
+
+/* REFLECTION */
+.refl{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.mic-phrase{font-size:clamp(22px,3vw,30px);font-weight:800;min-height:90px;margin:16px 0;line-height:1.3}
+.traffic{display:grid;gap:12px}
+.traffic div{padding:16px;border-radius:16px;font-weight:700;display:flex;gap:12px;align-items:center}
+.traffic .g{background:rgba(56,217,150,.16);border:1px solid var(--green)}
+.traffic .y{background:rgba(255,210,63,.14);border:1px solid var(--yellow)}
+.traffic .r{background:rgba(255,93,108,.16);border:1px solid var(--red)}
+.traffic i{width:22px;height:22px;border-radius:50%;flex:none}
+
+footer{padding:50px 0 40px;text-align:center;color:var(--ice);font-size:14px;border-top:1px solid var(--line);margin-top:40px}
+footer b{color:#fff}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero,.nav-grid,.score-grid,.pulse-grid,.refl{grid-template-columns:1fr}
+  .hero-art{max-width:300px;order:-1}
+  .stations,.roles{grid-template-columns:1fr 1fr}
+  .goals{grid-template-columns:1fr}
+  .warm{grid-template-columns:1fr 1fr}
+  .meta{grid-template-columns:1fr 1fr}
+  .safety,.obj{grid-template-columns:1fr}
+  .brand .txt{display:none}
+}
+@media (max-width:600px){
+  .stations,.roles,.warm{grid-template-columns:1fr}
+  .shanyraq-box{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .milestones span{font-size:10px}
+  .pts button{width:30px;height:30px}
+  .row{flex-wrap:wrap}.row .lbl{flex:1 0 100%}
+  .stop{flex-direction:column;align-items:flex-start}
+  .hero{padding-top:36px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="shan" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="8"/>
+      <circle cx="100" cy="100" r="74" fill="none" stroke="currentColor" stroke-width="3" opacity=".6"/>
+      <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round">
+        <path d="M40 60 Q100 120 160 60"/><path d="M40 140 Q100 80 160 140"/>
+        <path d="M60 40 Q120 100 60 160"/><path d="M140 40 Q80 100 140 160"/>
+      </g>
+    </symbol>
+    <symbol id="tumar" viewBox="0 0 24 24"><path d="M12 2 L21 12 L12 22 L3 12 Z" fill="#f5c451" stroke="#fff3c4" stroke-width="1.2"/><path d="M12 7 L16 12 L12 17 L8 12 Z" fill="#b5780f"/></symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg style="color:#f5c451"><use href="#shan"/></svg>
+      <span class="txt">Дәстүр додасы</span>
+    </div>
+    <div class="links">
+      <a href="#maqsat">Мақсат</a>
+      <a href="#navigator">Сабақ таймері</a>
+      <a href="#beles">Белестер</a>
+      <a href="#upai">Ұпай тақтасы</a>
+      <a href="#puls">Пульс</a>
+      <a href="#qyzdyru">Қыздыру</a>
+      <a href="#rolder">Рөлдер</a>
+      <a href="#qauipsizdik">Қауіпсіздік</a>
+      <a href="#refleksiya">Рефлексия</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <div class="eyebrow">★ ІІ тур · Қазіргі заманғы дене шынықтыру сабағы</div>
+      <h1>Дәстүр додасы<span>Көш жолы: алты белес</span></h1>
+      <p class="lead">Ұлттық мұра мен заманауи технология үйлескен эстафеталық сабақ-жарыс. «Тұлпар» мен «Қыран» алты белестен өтіп, тұмар жинайды, ал соңында екеуі бір ортақ шаңырақ көтереді.</p>
+      <div class="chips">
+        <span class="chip">❤️ Пульс-паспорт</span><span class="chip">📱 QR-нұсқау</span><span class="chip">🎥 Бейне-айна</span>
+        <span class="chip">🚦 3 деңгей</span><span class="chip">🧭 Оқушы рөлдері</span><span class="chip">🏅 Тұмар-геймификация</span>
+      </div>
+      <a href="#navigator" class="btn btn-gold">▶ Сабақты бастау</a>
+      <a href="#beles" class="btn btn-ghost" style="margin-left:8px">Белестер</a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3d8bff" stop-opacity=".55"/><stop offset="1" stop-color="#3d8bff" stop-opacity="0"/></radialGradient>
+          <linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#f5c451"/><stop offset="1" stop-color="#ffdf8a"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="200" fill="url(#glow)"/>
+        <g class="spin">
+          <circle cx="200" cy="200" r="168" fill="none" stroke="#bfe0ff" stroke-opacity=".35" stroke-width="2" stroke-dasharray="4 10"/>
+          <g fill="#f5c451">
+            <circle cx="200" cy="32" r="7"/><circle cx="345" cy="116" r="7"/><circle cx="345" cy="284" r="7"/>
+            <circle cx="200" cy="368" r="7"/><circle cx="55" cy="284" r="7"/><circle cx="55" cy="116" r="7"/>
+          </g>
+        </g>
+        <svg x="80" y="80" width="240" height="240" style="color:#f5c451"><use href="#shan"/></svg>
+        <circle cx="200" cy="205" r="36" fill="#0b2470" stroke="#f5c451" stroke-width="3"/>
+        <text x="200" y="210" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="30" fill="#fff">5</text>
+        <text x="200" y="228" text-anchor="middle" font-family="Montserrat" font-weight="700" font-size="9" fill="#bfe0ff" letter-spacing="2">СЫНЫП</text>
+      </svg>
+    </div>
+  </header>
+  <div class="meta reveal">
+    <div><b>40</b><small>минут</small></div>
+    <div><b>6</b><small>белес</small></div>
+    <div><b>2</b><small>команда</small></div>
+    <div><b>36</b><small>ұпай</small></div>
+  </div>
+
+  <!-- GOALS -->
+  <section id="maqsat" class="reveal">
+    <div class="sec-head"><div><div class="num">01 · МАҚСАТ</div><h2>Сабақтың мақсаты</h2></div>
+      <p>Бөлім: Бірлескен іс-әрекеттегі ойын-сауық ойындары</p></div>
+    <div class="goals">
+      <div class="card goal"><span class="tag" style="background:var(--green);color:#06143d">Барлық оқушылар</span><h3>Қимыл реті мен қауіпсіздік</h3><p>Бес эстафетаның кемінде үшеуінде қимыл ретін және екі қауіпсіздік белгісін сақтайды; өз пульсін өлшеп, аймағын атайды.</p></div>
+      <div class="card goal"><span class="tag" style="background:var(--yellow);color:#06143d">Көпшілігі</span><h3>Командада бірлесу</h3><p>Командада рөлін атқарып, серіктесіне құрал беруде не тапсырманы орындауда көмектеседі.</p></div>
+      <div class="card goal"><span class="tag" style="background:var(--red)">Кейбірі</span><h3>Күрделі деңгей</h3><p>Қызыл деңгейді таңдап, қимыл ретін өзгеріссіз орындайды және ережені басқаларға бір сөйлеммен түсіндіреді.</p></div>
+    </div>
+    <div class="obj">
+      <div class="card"><b>5.1.2.1</b><p>Қимыл-қозғалыс комбинацияларын және олардың кейбір жаттығулардағы реттілігін білу және орындау.</p></div>
+      <div class="card"><b>5.2.3.1</b><p>Қолайлы оқу-үйрену ортасын қалыптастыру бойынша біріккен әрі тиімді жұмыс дағдыларын түсіну және анықтай білу.</p></div>
+    </div>
+  </section>
+
+  <!-- NAVIGATOR -->
+  <section id="navigator" class="reveal">
+    <div class="sec-head"><div><div class="num">02 · САБАҚ НАВИГАТОРЫ</div><h2>40 минуттық таймер</h2></div>
+      <p>Проекторға шығарып қойыңыз: кезең атауы, кері санақ және «Көш жолындағы» орныңыз көрініп тұрады.</p></div>
+    <div class="nav-grid">
+      <div class="card timer-card">
+        <div class="stage-label" id="stLabel">Кезең 1 / 13 · Басы</div>
+        <div class="stage-title" id="stTitle">—</div>
+        <div class="stage-desc" id="stDesc">—</div>
+        <div class="clock" id="clock">00:00</div>
+        <div class="bar"><i id="bar"></i></div>
+        <div class="controls">
+          <button class="btn btn-gold" id="play">▶ Бастау</button>
+          <button class="btn btn-ghost" id="prev">⏮ Алдыңғы</button>
+          <button class="btn btn-ghost" id="next">Келесі ⏭</button>
+          <button class="btn btn-ghost" id="reset">↺</button>
+          <button class="btn btn-ghost" id="full" title="Толық экран">⛶</button>
+        </div>
+        <div class="total" id="total">Жалпы уақыт: 00:00 / 40:00</div>
+        <div class="path">
+          <svg viewBox="0 0 600 110" preserveAspectRatio="none" id="pathSvg">
+            <path id="koshPath" d="M10 80 C 90 10, 150 10, 200 60 S 320 110, 400 50 S 520 0, 590 40" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+            <path id="koshDone" d="M10 80 C 90 10, 150 10, 200 60 S 320 110, 400 50 S 520 0, 590 40" fill="none" stroke="#f5c451" stroke-width="5" stroke-linecap="round"/>
+            <g id="dots"></g>
+            <g id="walker"><circle r="13" fill="#3d8bff" stroke="#fff" stroke-width="3"/><text y="5" text-anchor="middle" font-size="13">🐎</text></g>
+          </svg>
+          <div class="milestones"><span>Қамшы</span><span>Құлан</span><span>Сақа</span><span>Шаңырақ</span><span>Көш</span><span>Ел ертеңі</span></div>
+        </div>
+      </div>
+      <div class="card"><div class="stage-label" style="margin-bottom:10px">Кезеңдер</div><div class="stages" id="stages"></div></div>
+    </div>
+  </section>
+
+  <!-- STATIONS -->
+  <section id="beles" class="reveal">
+    <div class="sec-head"><div><div class="num">03 · КӨШ ЖОЛЫ</div><h2>Алты белес</h2></div>
+      <p>Карточканы басыңыз: белестің мағынасы, ұйымдастырылуы, тірек белгілері және жасыл, сары, қызыл деңгейлері ашылады.</p></div>
+    <div class="stations" id="stationsGrid"></div>
+  </section>
+
+  <!-- SCOREBOARD -->
+  <section id="upai" class="reveal">
+    <div class="sec-head"><div><div class="num">04 · ТІРІ ҰПАЙ ТАҚТАСЫ</div><h2>Тұлпар vs Қыран</h2></div>
+      <p>Әр белеске 0–6 ұпай: нәтиже, өзара көмек, ереже (әрқайсысы 0–2). Ережені толық сақтаған команда тұмар алады.</p></div>
+    <div class="score-grid">
+      <div class="card team tulpar" id="teamA"><div class="leader">КӨШБАСШЫ</div>
+        <div class="team-head"><div class="logo">🐎</div><h3>Тұлпар</h3><div class="team-total"><b id="totA">0</b><small>/ 36 ұпай</small></div></div>
+        <div id="rowsA"></div></div>
+      <div class="card team qyran" id="teamB"><div class="leader">КӨШБАСШЫ</div>
+        <div class="team-head"><div class="logo">🦅</div><h3>Қыран</h3><div class="team-total"><b id="totB">0</b><small>/ 36 ұпай</small></div></div>
+        <div id="rowsB"></div></div>
+    </div>
+    <div class="card shanyraq-box">
+      <svg viewBox="0 0 200 200" id="shanBig">
+        <use href="#shan" style="color:rgba(255,255,255,.25)"/>
+        <g id="shanTumars"></g>
+      </svg>
+      <div>
+        <h3>Ортақ шаңырақ</h3>
+        <p>Екі команданың тұмарлары бір шаңыраққа ілінеді. Жарыста жеңімпаз бар, ал шаңырақ ортақ. Тұмарлар: <b id="tumCount" style="color:var(--gold)">0 / 12</b></p>
+        <div class="controls"><button class="btn btn-ghost" id="clearScore">Ұпайды тазарту</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULSE -->
+  <section id="puls" class="reveal">
+    <div class="sec-head"><div><div class="num">05 · ДЕНСАУЛЫҚ</div><h2>Пульс-паспорт <span class="heart">❤️</span></h2></div>
+      <p>Пульсті 10 секунд санап, 6-ға көбейтеміз. Сабақта 4 рет өлшейміз: басында, қыздырудан кейін, 20-минутта, қалпына келуде.</p></div>
+    <div class="pulse-grid">
+      <div class="card">
+        <div class="stage-label">10 секундтық санақ</div>
+        <div class="count10" id="c10">10</div>
+        <div class="controls" style="justify-content:center;margin-top:0"><button class="btn btn-gold" id="c10btn">▶ Санауды бастау</button></div>
+        <div class="lights">
+          <div class="light"><i style="background:var(--green)"></i><b>ЖАСЫЛ</b><span>130-ға дейін: жеңіл жүктеме, деңгейді көтеруге болады</span></div>
+          <div class="light"><i style="background:var(--yellow)"></i><b>САРЫ</b><span>130–170: тиімді аймақ, қарқынды сақта</span></div>
+          <div class="light"><i style="background:var(--red)"></i><b>ҚЫЗЫЛ</b><span>170-тен жоғары: жүру режиміне ауыс, мұғалімге белгі бер</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="stage-label">Калькулятор</div>
+        <div class="pulse-in"><input type="number" id="beats" min="5" max="40" placeholder="18" inputmode="numeric"><span style="font-weight:700;color:var(--ice)">соғу / 10 с<br>× 6 =</span></div>
+        <div class="pulse-out"><span id="bpm">—</span> <small>соғу/мин</small></div>
+        <div class="zone" id="zone">10 секундтағы соғу санын енгізіңіз.</div>
+        <p style="color:var(--ice);font-size:13px;margin-top:14px">Сандар 10–11 жастағы балаға арналған бағдар ғана. Қалпына келу кезеңінен кейін пульс 120-дан төмен болуы күтіледі.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARMUP -->
+  <section id="qyzdyru" class="reveal">
+    <div class="sec-head"><div><div class="num">06 · 2–7 МИНУТ</div><h2>Ұлттық қимыл-қыздыру</h2></div>
+      <p>Музыка ырғағымен, айна әдісімен жүргізіледі.</p></div>
+    <div class="warm" id="warm"></div>
+  </section>
+
+  <!-- ROLES -->
+  <section id="rolder" class="reveal">
+    <div class="sec-head"><div><div class="num">07 · КӨШБАСШЫЛЫҚ</div><h2>Оқушы рөлдері</h2></div>
+      <p>Рөл атқарушы да барлық белеске қатысады. Қимылға шектеуі бар оқушы рөлдің бірін негізгі міндет ретінде алады.</p></div>
+    <div class="roles" id="roles"></div>
+  </section>
+
+  <!-- SAFETY -->
+  <section id="qauipsizdik" class="reveal">
+    <div class="sec-head"><div><div class="num">08 · ҚАУІПСІЗДІК</div><h2>Қауіпсіздік ережелері</h2></div></div>
+    <div class="card stop"><b>✋ ТОҚТА!</b><span>«Тоқта!» сөзі және көтерілген қол – бәріне ортақ тоқтау белгісі. Келесі оқушы алдыңғысы жолақты босатқан соң ғана бастайды.</span></div>
+    <ol class="safety" id="safety"></ol>
+  </section>
+
+  <!-- REFLECTION -->
+  <section id="refleksiya" class="reveal">
+    <div class="sec-head"><div><div class="num">09 · 37–40 МИНУТ</div><h2>Рефлексия</h2></div>
+      <p>«Ыстық микрофон», «Бағдаршам» шығу билеті және ортақ фото.</p></div>
+    <div class="refl">
+      <div class="card">
+        <div class="stage-label">🎤 Ыстық микрофон</div>
+        <div class="mic-phrase" id="phrase">Микрофонды алып, батырманы бас!</div>
+        <div class="controls"><button class="btn btn-gold" id="newPhrase">🎲 Жаңа сөйлем</button></div>
+      </div>
+      <div class="card">
+        <div class="stage-label" style="margin-bottom:12px">🚦 Шығу билеті</div>
+        <div class="traffic">
+          <div class="g"><i style="background:var(--green)"></i>Бәрін түсіндім, досыма үйрете аламын</div>
+          <div class="y"><i style="background:var(--yellow)"></i>Көбін орындадым, бір қимылды жетілдіремін</div>
+          <div class="r"><i style="background:var(--red)"></i>Маған көмек керек</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>№152 мектеп-гимназия</b> · Педагог: <b>Биахметов Саят Қайратұлы</b><br>
+    Қалалық «Үздік дене шынықтыру педагогі» байқауы · Алматы қаласы · 2026–2027 оқу жылы
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="close" id="mClose" aria-label="Жабу">×</button>
+    <div class="stage-label" id="mTime"></div>
+    <h2 id="mTitle" style="margin-top:6px"></h2>
+    <div class="quote" id="mQuote"></div>
+    <h4>Ұйымдастыру</h4><p id="mOrg"></p>
+    <h4>Тірек белгілер</h4><p id="mCues"></p>
+    <h4>Деңгейді таңда</h4>
+    <div class="lvl-tabs"><button class="g on" data-l="0">Жасыл</button><button class="y" data-l="1">Сары</button><button class="r" data-l="2">Қызыл</button></div>
+    <div class="lvl-text" id="mLvl"></div>
+    <h4>Бағалау</h4><p id="mScore"></p>
+  </div>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const STAGES = [
+  {n:"«Дала шақыруы» – ұйымдастыру", m:2, ph:"Басы", d:"Командалар сапқа тұрады, рөлдер таратылады, «Тоқта!» белгісі. ЖСЖ №1.", b:0},
+  {n:"Ұлттық қимыл-қыздыру", m:5, ph:"Басы", d:"Шабандоз, бүркіт қанаты, садақ тарту, киіз басу, құлын секірісі.", b:0},
+  {n:"Нұсқау және ЖСЖ №2", m:2, ph:"Басы", d:"Тәсілдерді көрсету, QR-карталар мен деңгей карточкалары. Пульсті өлшеу.", b:0},
+  {n:"1-белес «Аманат қамшы»", m:4, ph:"Ортасы", d:"Таяқшаны апарып, қамшыны әкел. Құралды «Аманат!» деп төменнен бер.", b:1},
+  {n:"2-белес «Құлан қарғымы»", m:4, ph:"Ортасы", d:"Резеңкемен аласа қосаяқ секіру. Бейнеоператор түсіреді.", b:2},
+  {n:"3-белес «Сақа жеткіз»", m:3, ph:"Ортасы", d:"Бірі допты апарып қояды, екіншісі алып келеді.", b:3},
+  {n:"Пульс-аялдама және бейне-айна", m:1, ph:"Ортасы", d:"ЖСЖ №3. 10 секундтық бейне: «Жұмсақ қону қайсысы?»", b:3.5},
+  {n:"4-белес «Шаңырақ көтеру»", m:4, ph:"Ортасы", d:"6 стаканнан 3–2–1 пирамидасы, үстіне шаңырақ белгісі.", b:4},
+  {n:"5-белес «Көш жолы»", m:4, ph:"Ортасы", d:"Екі обручпен мәреге барып, жұбы кері әкеледі.", b:5},
+  {n:"6-белес «Мен елімнің ертеңімін»", m:6, ph:"Ортасы", d:"1 мин жоспар, 3 мин сурет, 2 мин қорғау + тірі мүсін.", b:6},
+  {n:"«Дала самалы» – қалпына келу", m:2, ph:"Соңы", d:"Тыныс 4–4, созылу, ЖСЖ №4.", b:6},
+  {n:"«Ыстық микрофон»", m:2, ph:"Соңы", d:"Серіктеске тілек, «Бүгін мен ... үйрендім».", b:6},
+  {n:"«Ортақ шаңырақ» – қорытынды", m:1, ph:"Соңы", d:"Ұпай, тұмарлар шаңыраққа, шар, фото, шығу билеті.", b:6},
+];
+
+const ICONS = {
+  whip:'<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M6 26 L14 18"/><path d="M14 18 C20 12 26 14 25 8 C24 4 18 6 20 10"/></svg>',
+  jump:'<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M4 26 Q10 6 16 26 Q22 6 28 26"/></svg>',
+  ball:'<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="16" cy="16" r="10"/><path d="M6 16 H26 M16 6 C11 11 11 21 16 26 M16 6 C21 11 21 21 16 26"/></svg>',
+  cups:'<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><path d="M13 5h6l-1 6h-4z"/><path d="M8 13h6l-1 6H9z M18 13h6l-1 6h-4z"/><path d="M4 21h6l-1 6H5z M13 21h6l-1 6h-4z M22 21h6l-1 6h-4z"/></svg>',
+  hoop:'<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.4"><ellipse cx="10" cy="18" rx="7" ry="5"/><ellipse cx="22" cy="14" rx="7" ry="5"/></svg>',
+  star:'<svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><path d="M16 4l3.6 7.6 8.4 1-6.2 5.8 1.6 8.3L16 22.6 8.6 26.7l1.6-8.3L4 12.6l8.4-1z"/></svg>'
+};
+
+const STATIONS = [
+  {t:"«Аманат қамшы»", tm:"1-белес · 9–13 мин", ic:"whip", s:"Таяқша мен қамшыны алмастыру эстафетасы",
+   q:"Қамшы – ердің серігі. Аманатты сақтап, келесі адамға аман жеткізу – адалдық белгісі.",
+   o:"Әр жолақта 3 аласа конус, 6 м жердегі шеңбер және ішінде жұмсақ қамшы болады. Сөреде таяқша тұрады. Бірінші оқушы таяқшамен конустар арасынан өтіп, оны шеңберге қояды, қамшыны алып ашық қайту жолымен келеді және «Аманат!» деп төменнен береді. Екінші оқушы қамшыны апарып, таяқшаны алып келеді.",
+   c:"Бұрылыста баяулау; құралды төменнен беру; серіктес нық ұстаған соң ғана жіберу.",
+   l:["Жүру, 1 конус айналып өту.","Жеңіл жүгіру, 3 конус арасымен «жылан» жүріс.","3 конус «жылан» жүріс + шеңберде 2 секунд бір аяқпен тепе-теңдікте тұрып, құралды ауыстыру."]},
+  {t:"«Құлан қарғымы»", tm:"2-белес · 13–17 мин", ic:"jump", s:"Резеңкемен аласа қосаяқ секіру",
+   q:"Құлан – даланың ең ұшқыр аңы. Ептілік пен жұмсақ қону – құланның қасиеті.",
+   o:"Әр командаға екі жеңіл резеңке беріледі. Оқушы отырып киеді, 3 м аралықтағы конустар арасымен аласа қосаяқ секіреді, мәреде отырып шешеді де, сыртқы жолмен жаяу қайтады. Бейнеоператор 2–3 секірісті түсіреді.",
+   c:"Жұмсақ қону – тізе сәл бүгілген; тұрақты қалып; резеңкені тік тұрып асығыс шешпеу.",
+   l:["Резеңкесіз белгілер арасымен қадамдау.","Резеңкемен 3 м түзу бойымен аласа қосаяқ секіру.","Резеңкемен «жылан» секіру + мәреде 3 секунд «құлан тұрысы» (тепе-теңдік)."]},
+  {t:"«Сақа жеткіз»", tm:"3-белес · 17–20 мин", ic:"ball", s:"Допты бірі апарады, екіншісі алып келеді",
+   q:"Асық ойынында сақа – ең бағалы асық. Оны дәл жеткізу – шеберлік пен жауапкершілік.",
+   o:"Бірінші оқушы допты 6 м жердегі шеңберге апарып, бақылап қояды да, бос қолмен қайтады. Екіншісі барып, допты алып келеді. Доп бір бағытта ғана тасылады.",
+   c:"Допты лақтырмай қою және алу; өз жолағын сақтау; алдыңғы оқушы қайтпай тұрып бастамау.",
+   l:["Үлкен жеңіл доп, екі қолмен ұстап жүру.","Доп, екі қолмен ұстап жеңіл жүгіру.","Допты еденде қолмен домалатып, бақылап жүргізу (лақтыруға болмайды)."]},
+  {t:"«Шаңырақ көтеру»", tm:"4-белес · 21–25 мин", ic:"cups", s:"6 стаканнан 3–2–1 пирамидасы",
+   q:"Шаңырақ – отбасы мен елдің бірлігінің белгісі. Шаңырақты бір адам емес, бүкіл ауыл көтереді.",
+   o:"Әр командаға 6 стакан, үлгі және қағаз шаңырақ дөңгелегі беріледі. Түсіндіруші, құрастырушы, тексеруші рөлдері тапсырма ортасында ауысады. Төменнен жоғары 3–2–1 құрап, үстіне шаңырақ қойылады.",
+   c:"Стаканды сақ қою; бір-біріне сөзбен нұсқау беру; асықпай тексеру.",
+   l:["Үлгі көз алдында тұрады.","Үлгі 20 секунд көрсетіліп, жабылады – есте сақтап құрау.","«Үнсіз құрылыс»: түсіндіруші тек ым-ишарамен нұсқау береді."]},
+  {t:"«Көш жолы»", tm:"5-белес · 25–29 мин", ic:"hoop", s:"Екі обручпен мәреге барып-қайту",
+   q:"Көш бір адамның күшімен емес, бірлікпен алға жылжиды.",
+   o:"Бірінші оқушы бір обруч ішінде тұрып, екіншісін алдына толық қояды да, соған өтеді. Осылай 2 м жердегі мәреге жетеді. Жұбы сыртқы жолмен мәреге келіп күтеді де, сол обручтармен сөреге кері қайтады.",
+   c:"Аяқ тұрған обруч көтерілмейді; алдыңғысы жерге толық қойылған соң ғана қадам жасалады.",
+   l:["Аралық 1,5 м; серіктес обручты қоюға көмектеседі.","Аралық 2 м, өз бетімен орындау.","Аралық 2 м; жұп «бір – қой, екі – өт» ырғағын дауыстап санап орындайды."]},
+  {t:"«Мен елімнің ертеңімін»", tm:"6-белес · 29–35 мин", ic:"star", s:"Ортақ сурет және «тірі мүсін»",
+   q:"Ел ертеңі – бүгінгі балалардың ісінде. Әр оқушы өз үлесін қосады.",
+   o:"1 мин – ой мен рөлді келісу. 3 мин – мектеп, спорт, табиғат, еңбек не елге қызмет тақырыбында ортақ сурет. 2 мин – әр команда 1 минут қорғайды: екі өкіл сөйлейді, қалғандары 5 секундтық «тірі мүсін» құрайды.",
+   c:"Әр бала кемінде бір бөлікті салады не ұйымдастырады; қорғау бір нақты идеяға негізделеді.",
+   l:["Суреттен бір бейнені атайды.","Бір бейнені атап, еліне пайдалы бір ісін бір сөйлеммен айтады.","Идеяны тірі мүсін арқылы көрсетіп, оны бүгінгі бір құндылықпен байланыстырады."]},
+];
+
+const WARM = [
+  ["2:00","«Көшке шығу»","Шеңбер бойымен жүру, қолды еркін сермеу","30 с"],
+  ["2:30","«Шабандоз»","Жеңіл жүгіру, тізені жоғары көтеру","40 с"],
+  ["3:10","«Бүркіт қанаты»","Иықты алға-артқа айналдыру","6–8 рет"],
+  ["3:50","«Садақ тарту»","Тұлғаны бұрып, садақ тартқандай қимыл","әр жаққа 4"],
+  ["4:30","«Киіз басу»","Жартылай отыру, алға 4 қадам","6 рет"],
+  ["5:20","«Асық иіру»","Тобық пен білекті айналдыру","әр жаққа 6"],
+  ["5:50","«Құлын секірісі»","Аяқ ұшына көтерілу, жеңіл секіру","8 + 4–6"],
+  ["6:30","«Дала самалы»","Жай адымдау, тынысты реттеу","30 с"],
+];
+const ROLES = [
+  ["🧭","Капитан","Деңгейді таңдайды, кезекті реттейді, қорытындыда сөйлейді."],
+  ["🦺","Қауіпсіздік инспекторы","Жолақты қадағалайды, қажет болса «Тоқта!» белгісін береді."],
+  ["⏱️","Уақыт сақшысы","Таймерді бақылап, соңғы 30 секундты хабарлайды."],
+  ["⚖️","Төреші-оқушы","Қарсы команданың ереже сақтауын чек-парақпен белгілейді."],
+  ["🎥","Бейнеоператор","2-белесте секірісті түсіреді, бейне-айнаға көмектеседі."],
+  ["🏅","Тұмар сақшысы","Тұмарларды жинап, соңында ортақ шаңыраққа іледі."],
+];
+const SAFETY = [
+  "Еден, аяқкиім, құралдар сабақ алдында тексеріледі. Денсаулық шектеуі бар оқушы мұғалімге жеке хабарлайды.",
+  "Әр команда өз жолағымен қозғалады. Сөре, бұрылыс, күту аймағы және ашық қайту жолы белгіленеді.",
+  "Таяқша мен жұмсақ қамшы төменнен беріледі; сермеуге, лақтыруға болмайды.",
+  "Резеңке кең әрі жұмсақ, аяқтар байланбайды. Отырып киіліп-шешіледі. Тек аласа секіру.",
+  "Доп нысанаға бақылап қойылады; домалап кетсе, белгі бойынша алынады.",
+  "Стакандар сынбайтын болады; лақтыруға, үстелге сүйенуге болмайды.",
+  "Обруч жерге толық қойылады; аяқ тұрған обруч көтерілмейді.",
+  "Пульс қызыл аймақта болса, келесі белес жүріп орындалады.",
+  "Экран, планшет, колонка қозғалыс жолынан тыс тұрады. Бейне жарияланбайды.",
+  "Маркерлер қауіпсіз; шармен жүгірмейді; фото мектеп тәртібімен түсіріледі.",
+];
+const PHRASES = [
+  "Саған ... тілеймін, себебі сен бүгін ...",
+  "Бүгін мен ... үйрендім.",
+  "Маған ең қиыны ... болды, бірақ мен ...",
+  "Менің серігім маған ... кезінде көмектесті.",
+  "Мен ... белесінде ережені толық сақтадым.",
+  "Келесі жолы мен ... қимылын жақсартамын.",
+  "Біздің команданың күші – ...",
+  "Мен елімнің ертеңімін, себебі ...",
+];
+
+/* ---------- STORAGE (safe) ---------- */
+const store = {
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+
+/* ---------- TIMER ---------- */
+const $ = id => document.getElementById(id);
+const fmt = s => String(Math.floor(s/60)).padStart(2,"0")+":"+String(Math.floor(s%60)).padStart(2,"0");
+const starts = []; let acc=0; STAGES.forEach(s=>{starts.push(acc); acc+=s.m*60});
+const TOTAL = acc;
+let cur=0, left=STAGES[0].m*60, running=false, tick=null, audio=null;
+
+function beep(f=880,d=.18,times=1){
+  try{
+    audio = audio || new (window.AudioContext||window.webkitAudioContext)();
+    for(let i=0;i<times;i++){
+      const o=audio.createOscillator(), g=audio.createGain();
+      o.frequency.value=f; o.connect(g); g.connect(audio.destination);
+      const t=audio.currentTime+i*.28; g.gain.setValueAtTime(.25,t); g.gain.exponentialRampToValueAtTime(.001,t+d);
+      o.start(t); o.stop(t+d);
+    }
+  }catch(e){}
+}
+const stagesEl=$("stages");
+STAGES.forEach((s,i)=>{
+  const d=document.createElement("div"); d.className="st"; d.dataset.i=i;
+  d.innerHTML=`<span class="t">${fmt(starts[i])}</span><span class="n">${s.n}</span><span class="p">${s.m} мин</span>`;
+  d.onclick=()=>{go(i)}; stagesEl.appendChild(d);
+});
+const pathEl=$("koshPath"), doneEl=$("koshDone"), walker=$("walker"), plen=pathEl.getTotalLength();
+doneEl.style.strokeDasharray=plen;
+const dotsG=$("dots");
+for(let k=1;k<=6;k++){
+  const p=pathEl.getPointAtLength(plen*(k/6.2));
+  const c=document.createElementNS("http://www.w3.org/2000/svg","circle");
+  c.setAttribute("cx",p.x);c.setAttribute("cy",p.y);c.setAttribute("r",8);c.setAttribute("fill","#0b2470");c.setAttribute("stroke","#f5c451");c.setAttribute("stroke-width","3");c.id="dot"+k;
+  dotsG.appendChild(c);
+}
+function render(){
+  const s=STAGES[cur];
+  $("stLabel").textContent=`Кезең ${cur+1} / ${STAGES.length} · ${s.ph}`;
+  $("stTitle").textContent=s.n; $("stDesc").textContent=s.d;
+  const c=$("clock"); c.textContent=fmt(left);
+  c.className="clock"+(left===0?" end":(left<=30?" warn":""));
+  $("bar").style.width=(100*(1-left/(s.m*60)))+"%";
+  const el=starts[cur]+(s.m*60-left);
+  $("total").textContent=`Жалпы уақыт: ${fmt(el)} / ${fmt(TOTAL)}`;
+  document.querySelectorAll(".st").forEach((d,i)=>{d.classList.toggle("active",i===cur);d.classList.toggle("done",i<cur)});
+  // path progress by stage b value
+  const prevB = cur>0?STAGES[cur-1].b:0;
+  const frac = prevB + (s.b-prevB)*(1-left/(s.m*60));
+  const L = plen*Math.min(frac/6.2, 1);
+  doneEl.style.strokeDashoffset = plen-L;
+  const p=pathEl.getPointAtLength(L); walker.setAttribute("transform",`translate(${p.x},${p.y})`);
+  for(let k=1;k<=6;k++) $("dot"+k).setAttribute("fill", frac>=k ? "#f5c451" : "#0b2470");
+  $("play").textContent = running ? "⏸ Тоқтату" : "▶ Бастау";
+}
+function go(i){ cur=Math.max(0,Math.min(STAGES.length-1,i)); left=STAGES[cur].m*60; render(); const a=document.querySelector(".st.active"); if(a) a.scrollIntoView({block:"nearest",behavior:"smooth"}); }
+function step(){
+  if(left>0){ left--; if(left===30) beep(660,.15,1); if(left===0){ beep(880,.25,3); } render(); }
+  else if(cur<STAGES.length-1){ go(cur+1); }
+  else { running=false; clearInterval(tick); render(); }
+}
+$("play").onclick=()=>{ running=!running; if(running){ tick=setInterval(step,1000); beep(520,.1,1);} else clearInterval(tick); render(); };
+$("next").onclick=()=>go(cur+1);
+$("prev").onclick=()=>go(cur-1);
+$("reset").onclick=()=>{ running=false; clearInterval(tick); go(0); };
+$("full").onclick=()=>{ const el=document.querySelector(".timer-card"); try{ if(!document.fullscreenElement) el.requestFullscreen(); else document.exitFullscreen(); }catch(e){} };
+document.addEventListener("fullscreenchange",()=>{ const el=document.querySelector(".timer-card"); el.style.background=document.fullscreenElement?"linear-gradient(170deg,#12348f,#06143d)":""; el.style.display=document.fullscreenElement?"flex":""; el.style.flexDirection="column"; el.style.justifyContent="center"; el.style.padding=document.fullscreenElement?"5vw":""; });
+render();
+
+/* ---------- STATIONS ---------- */
+const grid=$("stationsGrid");
+STATIONS.forEach((s,i)=>{
+  const b=document.createElement("button"); b.className="card station";
+  b.innerHTML=`<div class="big">${i+1}</div><div class="ico">${ICONS[s.ic]}</div><h3>${s.t}</h3><div class="time">${s.tm}</div><p>${s.s}</p><div class="more">Толығырақ →</div>`;
+  b.onclick=()=>openModal(i); grid.appendChild(b);
+});
+let mi=0;
+function openModal(i){
+  mi=i; const s=STATIONS[i];
+  $("mTime").textContent=s.tm; $("mTitle").textContent=s.t; $("mQuote").textContent=s.q;
+  $("mOrg").textContent=s.o; $("mCues").textContent=s.c;
+  $("mScore").textContent = i<5 ? "Нәтиже 0–2 · Өзара көмек 0–2 · Ереже 0–2. Ең жоғары – 6 ұпай. Ұпай деңгейге қарамай қойылады." : "Тақырыпқа сәйкестік 0–2 · Ортақ үлес 0–2 · Нақты идеяны қорғау 0–2. Ең жоғары – 6 ұпай.";
+  setLvl(0); $("modal").classList.add("open"); document.body.style.overflow="hidden";
+}
+function setLvl(l){ document.querySelectorAll(".lvl-tabs button").forEach(b=>b.classList.toggle("on",+b.dataset.l===l)); $("mLvl").textContent=STATIONS[mi].l[l]; }
+document.querySelectorAll(".lvl-tabs button").forEach(b=>b.onclick=()=>setLvl(+b.dataset.l));
+function closeModal(){ $("modal").classList.remove("open"); document.body.style.overflow=""; }
+$("mClose").onclick=closeModal; $("modal").onclick=e=>{ if(e.target.id==="modal") closeModal(); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+
+/* ---------- SCOREBOARD ---------- */
+const NAMES=["Аманат қамшы","Құлан қарғымы","Сақа жеткіз","Шаңырақ көтеру","Көш жолы","Мен елімнің ертеңімін"];
+let score=store.get("dd_score",{A:Array(6).fill(null),B:Array(6).fill(null),tA:Array(6).fill(false),tB:Array(6).fill(false)});
+function buildRows(team){
+  const box=$("rows"+team); box.innerHTML="";
+  NAMES.forEach((n,i)=>{
+    const r=document.createElement("div"); r.className="row";
+    let btns=""; for(let v=0;v<=6;v++) btns+=`<button data-v="${v}" class="${score[team][i]===v?"on":""}">${v}</button>`;
+    r.innerHTML=`<span class="lbl">${i+1}. ${n}</span><div class="pts">${btns}</div><svg class="tumar ${score["t"+team][i]?"on":""}" title="Тұмар"><use href="#tumar"/></svg>`;
+    r.querySelectorAll(".pts button").forEach(b=>b.onclick=()=>{ const v=+b.dataset.v; score[team][i]= score[team][i]===v?null:v; save(); });
+    r.querySelector(".tumar").onclick=()=>{ score["t"+team][i]=!score["t"+team][i]; save(); };
+    box.appendChild(r);
+  });
+}
+function save(){ store.set("dd_score",score); paintScore(); }
+function paintScore(){
+  buildRows("A"); buildRows("B");
+  const a=score.A.reduce((s,v)=>s+(v||0),0), b=score.B.reduce((s,v)=>s+(v||0),0);
+  $("totA").textContent=a; $("totB").textContent=b;
+  $("teamA").classList.toggle("lead",a>b); $("teamB").classList.toggle("lead",b>a);
+  const g=$("shanTumars"); g.innerHTML="";
+  const all=[...score.tA.map(x=>[x,"A"]),...score.tB.map(x=>[x,"B"])];
+  let cnt=0;
+  all.forEach(([on],k)=>{
+    const ang=(k/12)*Math.PI*2 - Math.PI/2, x=100+84*Math.cos(ang), y=100+84*Math.sin(ang);
+    const u=document.createElementNS("http://www.w3.org/2000/svg","use");
+    u.setAttribute("href","#tumar"); u.setAttribute("x",x-11); u.setAttribute("y",y-11); u.setAttribute("width",22); u.setAttribute("height",22);
+    u.style.opacity=on?1:.15; if(on) cnt++; g.appendChild(u);
+  });
+  $("tumCount").textContent=cnt+" / 12";
+  $("shanBig").querySelector("use").style.color = cnt===12 ? "#f5c451" : `rgba(255,255,255,${.25+cnt*.05})`;
+}
+$("clearScore").onclick=()=>{ if(confirmClear()){ score={A:Array(6).fill(null),B:Array(6).fill(null),tA:Array(6).fill(false),tB:Array(6).fill(false)}; save(); } };
+let clearArmed=false;
+function confirmClear(){ const b=$("clearScore"); if(clearArmed){ clearArmed=false; b.textContent="Ұпайды тазарту"; return true; } clearArmed=true; b.textContent="Растау үшін тағы бас"; setTimeout(()=>{clearArmed=false;b.textContent="Ұпайды тазарту"},3000); return false; }
+paintScore();
+
+/* ---------- PULSE ---------- */
+$("beats").oninput=e=>{
+  const v=parseInt(e.target.value,10), z=$("zone");
+  if(!v||v<5||v>40){ $("bpm").textContent="—"; z.className="zone"; z.textContent="10 секундтағы соғу санын енгізіңіз (5–40)."; return; }
+  const bpm=v*6; $("bpm").textContent=bpm;
+  if(bpm<130){ z.className="zone g"; z.innerHTML="🟢 <b>ЖАСЫЛ АЙМАҚ.</b> Жеңіл жүктеме, келесі белесте сары не қызыл деңгейді таңдауға болады."; }
+  else if(bpm<=170){ z.className="zone y"; z.innerHTML="🟡 <b>САРЫ АЙМАҚ.</b> Тиімді жаттығу аймағы. Қарқынды сақта!"; }
+  else { z.className="zone r"; z.innerHTML="🔴 <b>ҚЫЗЫЛ АЙМАҚ.</b> Қарқынды азайт, келесі белесте жүр, мұғалімге белгі бер."; }
+};
+let cTimer=null;
+$("c10btn").onclick=()=>{
+  if(cTimer) return; let n=10; $("c10").textContent=n; beep(700,.15,1);
+  cTimer=setInterval(()=>{ n--; $("c10").textContent=n; if(n<=0){ clearInterval(cTimer); cTimer=null; beep(980,.3,2); $("c10").textContent="САНА!"; setTimeout(()=>$("c10").textContent="10",2500);} },1000);
+};
+
+/* ---------- WARM / ROLES / SAFETY / PHRASES ---------- */
+$("warm").innerHTML=WARM.map(w=>`<div class="card"><div class="t">${w[0]}</div><h4>${w[1]}</h4><p>${w[2]}</p><span class="dose">${w[3]}</span></div>`).join("");
+$("roles").innerHTML=ROLES.map(r=>`<div class="card role"><div class="em">${r[0]}</div><div><h4>${r[1]}</h4><p>${r[2]}</p></div></div>`).join("");
+$("safety").innerHTML=SAFETY.map(s=>`<li>${s}</li>`).join("");
+let lastP=-1;
+$("newPhrase").onclick=()=>{ let i; do{ i=Math.floor(Math.random()*PHRASES.length) }while(i===lastP); lastP=i; const el=$("phrase"); el.style.opacity=0; setTimeout(()=>{el.textContent=PHRASES[i]; el.style.transition="opacity .3s"; el.style.opacity=1},150); };
+
+/* ---------- REVEAL ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.08});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
